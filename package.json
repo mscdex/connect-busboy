@@ -1,0 +1,13 @@
+{ "name": "connect-busboy",
+  "version": "0.0.1",
+  "author": "Brian White <mscdex@mscdex.net>",
+  "description": "Connect middleware for busboy",
+  "main": "./index",
+  "dependencies": {
+    "busboy": "*"
+  },
+  "engines": { "node": ">=0.8.0" },
+  "keywords": [ "connect", "middleware", "uploads", "forms", "multipart", "form-data" ],
+  "licenses": [ { "type": "MIT", "url": "http://github.com/mscdex/connect-busboy/raw/master/LICENSE" } ],
+  "repository" : { "type": "git", "url": "http://github.com/mscdex/connect-busboy.git" }
+}
