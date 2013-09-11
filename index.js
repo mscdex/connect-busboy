@@ -1,6 +1,4 @@
-var Busboy = require('busboy'),
-    connect = require('connect'),
-    utils = connect.utils;
+var Busboy = require('busboy');
 
 var RE_MIME = /^(?:multipart\/.+)|(?:application\/x-www-form-urlencoded)$/i;
 
@@ -11,8 +9,9 @@ module.exports = function(options) {
     if (req.busboy
         || req.method === 'GET'
         || req.method === 'HEAD'
-        || !utils.hasBody(req)
-        || !RE_MIME.test(utils.mime(req))) return next();
+        || !hasBody(req)
+        || !RE_MIME.test(mime(req)))
+      return next();
 
     var cfg = {};
     for (var prop in options)
@@ -25,5 +24,19 @@ module.exports = function(options) {
       req.pipe(req.busboy);
 
     next();
-  }
+  };
+};
+
+// utility functions copied from Connect
+
+function hasBody(req) {
+  var encoding = 'transfer-encoding' in req.headers,
+      length = 'content-length' in req.headers
+               && req.headers['content-length'] !== '0';
+  return encoding || length;
+};
+
+function mime(req) {
+  var str = req.headers['content-type'] || '';
+  return str.split(';')[0];
 };
