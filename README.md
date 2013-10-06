@@ -27,10 +27,10 @@ var busboy = require('connect-busboy');
 app.use(busboy());
 // ...
 app.use(function(req, res) {
-  req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename) {
     // ...
   });
+  req.pipe(req.busboy);
   // etc ...
 });
 
