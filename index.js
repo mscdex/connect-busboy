@@ -20,8 +20,11 @@ module.exports = function(options) {
 
     req.busboy = new Busboy(cfg);
 
-    if (options.immediate)
-      req.pipe(req.busboy);
+    if (options.immediate) {
+      process.nextTick(function() {
+        req.pipe(req.busboy);
+      });
+    }
 
     next();
   };
