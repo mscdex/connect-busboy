@@ -27,13 +27,15 @@ var busboy = require('connect-busboy');
 app.use(busboy());
 // ...
 app.use(function(req, res) {
-  req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    // ...
-  });
-  req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
-    // ...
-  });
-  req.pipe(req.busboy);
+  if (req.busboy) {
+    req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+      // ...
+    });
+    req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
+      // ...
+    });
+    req.pipe(req.busboy);
+  }
   // etc ...
 });
 
@@ -42,12 +44,14 @@ app.use(function(req, res) {
 app.use(busboy({ immediate: true }));
 // ...
 app.use(function(req, res) {
-  req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    // ...
-  });
-  req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
-    // ...
-  });
+  if (req.busboy) {
+    req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+      // ...
+    });
+    req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
+      // ...
+    });
+  }
   // etc ...
 });
 
