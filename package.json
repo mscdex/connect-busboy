@@ -4,7 +4,7 @@
   "description": "Connect middleware for busboy",
   "main": "./index",
   "dependencies": {
-    "busboy": "*"
+    "busboy": "0.0.x"
   },
   "engines": { "node": ">=0.8.0" },
   "keywords": [ "connect", "middleware", "uploads", "forms", "multipart", "form-data" ],
