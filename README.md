@@ -25,7 +25,7 @@ var busboy = require('connect-busboy');
 // default options, no immediate parsing
 app.use(busboy());
 // ...
-app.use(function(req, res) {
+app.use(function(req, res, next) {
   if (req.busboy) {
     req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
       // ...
@@ -36,13 +36,14 @@ app.use(function(req, res) {
     req.pipe(req.busboy);
   }
   // etc ...
+  next();
 });
 
 // default options, immediately start reading from the request stream and
 // parsing
 app.use(busboy({ immediate: true }));
 // ...
-app.use(function(req, res) {
+app.use(function(req, res, next) {
   if (req.busboy) {
     req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
       // ...
@@ -52,6 +53,7 @@ app.use(function(req, res) {
     });
   }
   // etc ...
+  next();
 });
 
 // any valid Busboy options can be passed in also
