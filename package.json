@@ -4,9 +4,17 @@
   "description": "Connect middleware for busboy",
   "main": "./index",
   "dependencies": {
-    "busboy": "~0.3.1"
+    "busboy": "^1.0.0"
   },
-  "engines": { "node": ">=0.8.0" },
+  "devDependencies": {
+    "@mscdex/eslint-config": "^1.1.0",
+    "eslint": "^7.32.0"
+  },
+  "scripts": {
+    "lint": "eslint --cache --report-unused-disable-directives --ext=.js .eslintrc.js .",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "engines": { "node": ">=10.16.0" },
   "keywords": [ "connect", "middleware", "uploads", "forms", "multipart", "form-data" ],
   "licenses": [ { "type": "MIT", "url": "http://github.com/mscdex/connect-busboy/raw/master/LICENSE" } ],
   "repository" : { "type": "git", "url": "http://github.com/mscdex/connect-busboy.git" }
